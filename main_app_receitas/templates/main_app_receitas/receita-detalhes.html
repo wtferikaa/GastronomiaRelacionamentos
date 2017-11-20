@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | Dashboard</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static '/css/font-awesome/css/font-awesome.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static '/css/AdminLTE.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/_all-skins.min.css' %}">
+</head>
+
+<body class="hold-transition skin-green sidebar-mini">
+    <!-- ========================================LAYOUT==================================================== -->
+    <div class="wrapper">
+
+        <header class="main-header">
+            <a href="http://localhost:8000" class="logo">
+                <span class="logo-mini"><b>G</b>O</span>
+                <span class="logo-lg"><b>Gastronomia</b>Opet</span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+
+                <nav class="navbar navbar-static-top">
+
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+
+                            <div class="navbar-custom-menu">
+                                <ul class="nav navbar-nav">
+                                    <li class="dropdown user user-menu">
+                                        <a href="#">
+                                            <span class="hidden-xs">Sair</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </ul>
+                    </div>
+                </nav>
+            </nav>
+        </header>
+    </div>
+
+    <!-- Menu Vertical -->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+
+            <!-- Search -->
+            <form action="#" method="get" class="sidebar-form">{% csrf_token %}
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+                </div>
+            </form>
+            <!-- Search FIM -->
+
+            <!-- sidebar menu -->
+            <ul class="sidebar-menu">
+                <li class="header">MAIN NAVIGATION</li>
+
+                <li class="treeview">
+                    <a href="http://localhost:8000">
+                        <i class="fa fa-bar-chart-o"></i> <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="treeview">
+                    <a href="http://localhost:8000/receitas">
+                        <i class="fa fa-book"></i> <span>Receitas</span>
+                    </a>
+                </li>
+
+                <li class="treeview">
+                    <a href="http://localhost:8000/estoque">
+                        <i class="fa fa-cubes"></i> <span>Estoque</span>
+                    </a>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-calendar"></i> <span>Aula</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="http://localhost:8000/planejar_aulas"><i class="fa fa-circle-o"></i>Planejar Aulas</a></li>
+                        <li><a href="http://localhost:8000/aulas_concluidas"><i class="fa fa-circle-o"></i>Aulas Concluidas</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <!-- sidebar FIM -->
+    </aside>
+    <!-- ======================================================================================================= -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>Abacaxi com Coco</h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <section class="col-lg-9">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title ">Ingredientes</h3>
+
+                                <div class="box-body">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Quantidade</th>
+                                                <th>Ingrediente</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Abacaxi</td>
+                                                <td>1 kg</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Arroz</td>
+                                                <td>5 kg</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Coco</td>
+                                                <td>1 kg</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Leite Condensado</td>
+                                                <td>2,5 kg</td>
+                                            </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title ">Modo de Preparo</h3>
+
+                                <div class="box-body">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Detalhes do Processo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Abacaxi</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Arroz</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Coco</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Leite Condensado</td>
+                                            </tr>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+
+    <!-- jQuery 2.2.3 -->
+    <script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'js/app.min.js' %}"></script>
+</body>
+
+</html>

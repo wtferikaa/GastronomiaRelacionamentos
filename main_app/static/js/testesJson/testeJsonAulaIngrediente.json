@@ -1,0 +1,22 @@
+[{
+        "id_aula_ingrediente": "1",
+        "id_ingrediente": ["1", "2"],
+        "id_aula": ["1"],
+        "quantidade_projetada_aula": "10",
+        "quantidade_utilizada_aula": "0"
+    },
+    {
+        "id_aula_ingrediente": "2",
+        "id_ingrediente": ["3", "1"],
+        "id_aula": ["2"],
+        "quantidade_projetada_aula": "20",
+        "quantidade_utilizada_aula": "0"
+    },
+    {
+        "id_aula_ingrediente": "3",
+        "id_ingrediente": ["2"],
+        "id_aula": ["3"],
+        "quantidade_projetada_aula": "13",
+        "quantidade_utilizada_aula": "0"
+    }
+]

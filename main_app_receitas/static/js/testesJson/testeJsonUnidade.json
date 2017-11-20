@@ -1,0 +1,21 @@
+[{
+        "id_unidade_medida": "1",
+        "descricao_unidade_medida": "un"
+    },
+    {
+        "id_unidade_medida": "2",
+        "descricao_unidade_medida": "kg"
+    },
+    {
+        "id_unidade_medida": "3",
+        "descricao_unidade_medida": "l"
+    },
+    {
+        "id_unidade_medida": "91",
+        "descricao_unidade_medida": "mg"
+    },
+    {
+        "id_unidade_medida": "92",
+        "descricao_unidade_medida": "ml"
+    }
+]

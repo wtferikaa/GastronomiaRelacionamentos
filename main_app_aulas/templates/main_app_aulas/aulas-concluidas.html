@@ -1,0 +1,375 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | Dashboard</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static '/css/font-awesome/css/font-awesome.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static '/css/AdminLTE.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/_all-skins.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/sweetalert.css' %}">
+    <link rel="stylesheet" href="{% static '/css/util.css' %}">
+</head>
+
+<body class="hold-transition skin-green sidebar-mini">
+    <!-- ========================================LAYOUT==================================================== -->
+    <div class="wrapper">
+        <header class="main-header">
+            <a href="http://localhost:8000" class="logo">
+                <span class="logo-mini">
+                    <b>G</b>O</span>
+                <span class="logo-lg">
+                    <b>Gastronomia</b>Opet</span>
+            </a>
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <nav class="navbar navbar-static-top">
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <div class="navbar-custom-menu">
+                                <ul class="nav navbar-nav">
+                                    <li class="dropdown user user-menu">
+                                        <a href="#">
+                                            <span class="hidden-xs">Sair</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </ul>
+                    </div>
+                </nav>
+            </nav>
+        </header>
+    </div>
+    <!-- Menu Vertical -->
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <!-- Search -->
+            <div class="btn-group sidebar-form">
+                <div class="input-group" data-toggle="dropdown">
+                    <input type="text" class="dropdown-toggle form-control" id="myInput" aria-haspopup="true" aria-expanded="false" placeholder="Procurar.."
+                        onkeyup="search()">
+                    </input>
+                    <span class="input-group-btn">
+                        <button type="button" name="search" id="search-btn" class="btn btn-flat">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <ul class="dropdown-menu">
+                    <li>
+                        <input class="col-xs-3" type="radio" id="filterIng" name="hah" onclick="getIngredientes()" value="Ingredientes">
+                        <label for="filterIng">Ingredientes</label>
+                    </li>
+                    <li>
+                        <input class="col-xs-3" type="radio" id="filterRec" name="hah" onclick="getReceitas()" value="Receitas">
+                        <label for="filterRec">Receitas</label>
+                    </li>
+                </ul>
+            </div>
+            <!-- Search FIM -->
+            <!-- sidebar menu -->
+            <ul class="sidebar-menu">
+                <li class="header">MAIN NAVIGATION</li>
+                <li class="treeview">
+                    <a href="http://localhost:8000">
+                        <i class="fa fa-bar-chart-o"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="http://localhost:8000/receitas">
+                        <i class="fa fa-book"></i>
+                        <span>Receitas</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="http://localhost:8000/estoque">
+                        <i class="fa fa-cubes"></i>
+                        <span>Estoque</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-calendar"></i>
+                        <span>Aula</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="http://localhost:8000/planejar_aulas">
+                                <i class="fa fa-circle-o"></i>Planejar Aulas</a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8000/aulas_concluidas">
+                                <i class="fa fa-circle-o"></i>Aulas Concluidas</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <!-- sidebar FIM -->
+    </aside>
+    <!-- ======================================================================================================= -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- id conteudo_principal seleciona todo o conteudo original, some tudo quando estiver buscando -->
+        <div id="conteudo_principal">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>Aulas Concluidas</h1>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title ">Aulas Concluidas</h3>
+                            </div>
+                            <div class="box-body">
+                                <table class="table table-bordered table-hover aulas">
+                                    <thead>
+                                        <tr>
+                                            <th>Dia</th>
+                                            <th>Turno</th>
+                                            <th>Nº de Receitas</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <!-- local onde será gerada a lista de aulas -->
+                                    <tbody class="aulaConcluidaList"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- Search será gerado aqui -->
+        <div id="listaSearch" style="display:none;">
+            <!-- CABEÇALHO -->
+            <section class="content-header">
+                <h1>Procurando</h1>
+            </section>
+            <section class="content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box box-info">
+                            <!-- MODAIS PARA O SEARCH -->
+                            <!-- ADICIONAR/EDITAR INGREDIENTE MODAL -->
+                            <div id="formIngrediente" class="modal fade" role="dialog">
+                                <div class=" modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header nomeIngredienteHeader">
+                                            <button type="button " class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul id="mensagens-erro"></ul>
+                                            <ul id="mensagens-sucesso"></ul>
+                                            <form id="form-addIngrediente" name="form-addIngrediente" method="POST" class="form-horizontal">{% csrf_token %}
+                                                <div class="box-body">
+                                                    <div class="form-group">
+                                                        <label for="inputIngrediente" class="col-sm-3 control-label">Ingrediente*</label>
+                                                        <div class="col-sm-6 idIngrediente "></div>
+                                                        <div class="col-sm-6 NomeIngrediente "></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputCalorias" class="col-sm-3 control-label">Quantidade Calorica*</label>
+                                                        <div class="col-sm-6 QuantidadeCalorica"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputAproveitamento" class="col-sm-3 control-label">Aproveitamento*</label>
+                                                        <div class="col-sm-6 Aproveitamento"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputUnidade " class="col-sm-3 control-label">Unidade*</label>
+                                                        <div class="col-sm-6 listaUnidade">
+                                                            <select name="id_unidades_medida" class="form-control" id="unidadeMedida" style="width: 100%;"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                    <button id="adicionar-ingrediente" type="button" class="btn btn-success pull-right">Salvar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FIM ADICIONAR/EDITAR INGREDIENTE-->
+                            <!-- SOMAR MODAL -->
+                            <div id="somar" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header nomeIngredienteHeader">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul id="mensagens-erro-soma"></ul>
+                                            <ul id="mensagens-sucesso-soma"></ul>
+                                            <form class="form-horizontal" id="formSomar" name="formSomar" method="POST">{% csrf_token %}
+                                                <div class="idIngrediente"></div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Quantidade Atual</label>
+                                                    <div class="col-xs-3 col-sm-3 quantidadeAtual"></div>
+                                                    <div class="col-xs-3 col-sm-3 unidadeTxt"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Preço Unitario</label>
+                                                    <div class="col-xs-3 col-sm-3 preco_unitario_atual">
+                                                        <h5>R$ 10</h5>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Quantidade a Somar*</label>
+                                                    <div class="inputValorTransformado"></div>
+                                                    <div class="col-xs-3 col-sm-3 inputQtdSoma"></div>
+                                                    <div class="col-sm-2 listaUnidade">
+                                                        <select onchange="calculaPreco()" name="id_unidades_medida" class="form-control" id="UnidadeMedidaSoma" style="width: 100%;"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Preço de Todo Ingrediente</label>
+                                                    <div class="col-xs-3 col-sm-3 inputPreco">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Preço Unitario Atualizado</label>
+                                                    <div class="col-xs-3 col-sm-3 preco_unitario_atualizado">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer ">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                    <button type="button" class="btn btn-success pull-right salvar-soma">Acrescentar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FIM SOMAR MODAL -->
+                            <!-- SUBTRAIR MODAL -->
+                            <div id="subtrair" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header nomeIngredienteHeader">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul id="mensagens-erro-subtrair"></ul>
+                                            <ul id="mensagens-sucesso-subtrair"></ul>
+                                            <form class="form-horizontal" id="formSubtrair" name="subtrair" method="POST">{% csrf_token %}
+                                                <div class="idIngrediente"></div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Quantidade Atual</label>
+                                                    <div class="col-xs-3 col-sm-3 quantidadeAtual"></div>
+                                                    <div class="col-xs-3 col-sm-3 unidadeTxt"></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-3 control-label">Quantidade a Subtrair*</label>
+                                                    <div class="col-xs-3 col-sm-3">
+                                                        <input type="text " name="quantidade_estoque_ingrediente" class="form-control qtdSubtrai" placeholder="Quantidade">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <select name="id_unidades_medida" class="form-control" id="unidadeMedidaSubtrai" style="width: 100%;"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputMotivo" class="col-sm-1 control-label">Motivo*</label>
+                                                    <div class="col-sm-12">
+                                                        <textarea name="motivo" type="text" class="form-control motivo" rows="1" placeholder="Motivo"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                    <button type="button" class="btn btn-danger pull-right salvar-subtracao">Subtrair</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FIM SUBTRAIR MODAL -->
+                            <!-- FIM MODAIS PARA O SEARCH -->
+                            <!-- header da tabela search sera gerada aqui -->
+                            <div class="box-header search_header">
+                            </div>
+                            <div class="box-body">
+                                <table class="table table-bordered table-hover" id="search_ingredientes">
+                                    <thead class="htmlHead">
+                                    </thead>
+                                    <!-- lista da busca sera gerada aqui -->
+                                    <tbody class="htmlIngList">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- FIM search -->
+    </div>
+    <!-- MODAL DETALHES DA AULA -->
+    <div id="verAula" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <!-- Header da modal gerada em ajaxPlanejarAulas.js -->
+                    <div class="headerDaModal"></div>
+                </div>
+                <div class="modal-body">
+                    <div class="box-body">
+                        <table id="receitasDaAula" class="table table-bordered table-hover aulas">
+                            <thead>
+                                <tr>
+                                    <th>Receitas</th>
+                                    <th>Porções</th>
+                                </tr>
+                            </thead>
+                            <!-- lista de receitas será gerada aqui -->
+                            <tbody class="receitasQuantidade"></tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer rodape"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIM MODAL DETALHES DA AULA -->
+    <script src="{% static '/js/urls.js' %}"></script>
+    <!-- jQuery 2.2.3 -->
+    <script src="{% static 'js/jquery-2.2.3.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/sweetalert.min.js' %} "></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'js/app.min.js' %}"></script>
+    <script src="{% static 'js/extra/util.js' %}"></script>
+    <script src="{% static 'js/extra/ajaxTabelaAulas.js' %}"></script>
+    <script src="{% static 'js/extra/modal_add_editar_detalhes_aulas.js' %}"></script>
+    <!-- js para funcionar o search -->
+    <script src="{% static 'js/search.js' %}"></script>
+    <script src="{% static 'js/extra/estoque/ajaxEstoque.js' %}"></script>
+    <script src="{% static 'js/extra/estoque/add_editar_ingredientes.js' %}"></script>
+    <script src="{% static 'js/extra/estoque/somar_subtrair.js' %}"></script>
+    <script src="{% static 'js/extra/estoque/unidades.js' %}"></script>
+</body>
+
+</html>

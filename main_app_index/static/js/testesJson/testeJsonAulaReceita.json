@@ -1,0 +1,40 @@
+[
+{
+    "id_aula_receita": "1",
+    "id_aula": "1",
+    "receita": [
+    {
+        "id_receita": "1",
+        "quantidade_receita": "10"
+    },
+    {
+        "id_receita": "2",
+        "quantidade_receita": "13"
+    },
+    {
+        "id_receita": "3",
+        "quantidade_receita": "24"
+    }]
+},
+{
+    "id_aula_receita": "2",
+    "id_aula": "2",
+    "receita": [
+    {
+        "id_receita": "1",
+        "quantidade_receita": "11"
+    },
+    {
+        "id_receita": "3",
+        "quantidade_receita": "14"
+    }]
+},
+{
+    "id_aula_receita": "3",
+    "id_aula": "3",
+    "receita": [
+    {
+        "id_receita": "1",
+        "quantidade_receita": "30"
+    }]
+}]
