@@ -121,7 +121,8 @@ class CreateReceitaSerializer(serializers.ModelSerializer):
             'id_categoria',
             'id_classificacao',
             'nome_receita',
-            'modo_preparo_receita'
+            'modo_preparo_receita',
+            'ingredientes',
 
         ]
     def validade (self, data):
@@ -145,7 +146,8 @@ class ListReceitaSerializer(serializers.ModelSerializer):
             'id_categoria',
             'id_classificacao',
             'nome_receita',
-            'modo_preparo_receita'
+            'modo_preparo_receita',
+            'ingredientes',
         ]
 
 class EditReceitaSerializer(serializers.ModelSerializer):
@@ -159,6 +161,7 @@ class EditReceitaSerializer(serializers.ModelSerializer):
             'id_classificacao',
             'nome_receita',
             'modo_preparo_receita'
+            'ingredientes',
         ]
 
     def validade (self, data):
@@ -177,7 +180,7 @@ class EditReceitaSerializer(serializers.ModelSerializer):
 #serializers da aula 
 class CreateAulaSerializer(serializers.ModelSerializer):
 
-    ingredientes = ListIngredienteSerializer(many=True, read_only=True)
+   
     receitas = ListReceitaSerializer(many=True, read_only=True)
     class Meta:
         model = Aula
@@ -188,7 +191,6 @@ class CreateAulaSerializer(serializers.ModelSerializer):
             'aula_agendada',
             'aula_concluida',
             'periodo_aula',
-            'ingredientes',
             'receitas',
             
         ]
@@ -196,7 +198,7 @@ class CreateAulaSerializer(serializers.ModelSerializer):
     #tem que fazer validação da data aqui
 
 class ListAulaSerializer(serializers.ModelSerializer):
-    ingredientes = ListIngredienteSerializer(many=True, read_only=True)
+    
     receitas = ListReceitaSerializer(many=True, read_only=True)
     class Meta:
         model = Aula
@@ -207,12 +209,11 @@ class ListAulaSerializer(serializers.ModelSerializer):
             'aula_agendada',
             'aula_concluida',
             'periodo_aula',
-            'ingredientes',
-            'receitas'
+            'receitas',
         ]
 
 class EditAulaSerializer(serializers.ModelSerializer):
-    ingredientes = ListIngredienteSerializer(many=True, read_only=True)
+    
     receitas = ListReceitaSerializer(many=True, read_only=True)
     class Meta:
         model = Aula
@@ -223,24 +224,10 @@ class EditAulaSerializer(serializers.ModelSerializer):
             'aula_agendada',
             'aula_concluida',
             'periodo_aula',
-            'ingredientes',
-            'receitas'
+            'receitas',
         ]
 
-    def validate (self, data):
-        data_aula = data ['data_aula']
-        descricao_aula = data ['descricao_aula']
-        aula_agendada = data ['aula_agendada']
-        aula_concluida = data ['aula_concluida']
-        periodo_aula = data ['periodo_aula']
-        numero_de_alunos_projetados_aula = data ['numero_de_alunos_projetados_aula']
-
-        if numero_de_alunos_projetados_aula < 0:
-            #validação da data irineu
-            raise serializers.ValidationError('O campo número de alunos projetado não pode ser negativo')
-        return data
-
-
+    
 
 '''#serializer da aula ingrediente 
 class AulaIngredienteSerializer(WritableNestedModelSerializer):
@@ -261,8 +248,10 @@ class AulaReceitaSerializer(WritableNestedModelSerializer):
         model = AulaReceita
         fields = [
             'id_aula_receita',
-            'id_receita',
             'id_aula',
+            'id_receita',
+            'quantidade_receita',
+            
         ]
 
 

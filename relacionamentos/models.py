@@ -38,7 +38,6 @@ class Aula (models.Model):
     aula_agendada = models.BooleanField(default= True)
     aula_concluida = models.BooleanField(default= True)
     periodo_aula = models.CharField(max_length = 100, null=True)
-    #ingredientes = models.ManyToManyField('Ingrediente', through='AulaIngrediente')
     receitas = models.ManyToManyField('Receita', through='AulaReceita')
    
 
@@ -59,6 +58,7 @@ class AulaReceita (models.Model):
     id_aula_receita = models.AutoField(primary_key=True)
     id_aula = models.ForeignKey('Aula', on_delete=models.CASCADE)
     id_receita = models.ForeignKey('Receita', on_delete=models.CASCADE)
+    quantidade_receita = models.DecimalField(max_digits = 12, decimal_places = 2, default = 0)
     
 
 
